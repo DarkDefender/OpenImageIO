@@ -153,6 +153,12 @@ macro (oiio_add_tests)
                              "OIIO_TESTSUITE_IMAGEDIR=${_ats_testdir}")
             endif()
 
+            if (OpenColorIO_BUILD_SHARED_LIBS)
+                set_property(TEST ${_testname} APPEND PROPERTY ENVIRONMENT
+                             "OpenColorIO_ROOT=${OpenColorIO_LOCAL_INSTALL_DIR}"
+                             "TBB_ROOT=/usr/local/")
+            endif()
+
         endforeach ()
         message (VERBOSE "TESTS: ${_ats_UNPARSED_ARGUMENTS}")
     endif ()
